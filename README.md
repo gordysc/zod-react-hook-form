@@ -1,6 +1,6 @@
 # Overview
 
-This is a NextJS application that illustrates how you can leverage [zod](https://github.com/colinhacks/zod) with [react-hook-form](https://github.com/react-hook-form/react-hook-form).
+This is a NextJS application that illustrates how you can leverage [zod](https://github.com/colinhacks/zod) with [react-hook-form](https://github.com/react-hook-form/react-hook-form) & [resolvers](https://github.com/react-hook-form/resolvers)
 
 ## Getting Started
 
