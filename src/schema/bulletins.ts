@@ -6,4 +6,3 @@ export const bulletinSchema = z.object({
 });
 
 export type Bulletin = z.infer<typeof bulletinSchema>;
-export type BulletinErrors = z.inferFormattedError<typeof bulletinSchema>;

@@ -1,40 +1,35 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import TextInput from "$components/TextInput";
-import {
-  bulletinSchema,
-  type Bulletin,
-  type BulletinErrors
-} from "$schema/bulletins";
+import { bulletinSchema, type Bulletin } from "$schema/bulletins";
 
 const BulletinForm = () => {
-  const { handleSubmit, register } = useForm<Bulletin>({});
-  const [errors, setErrors] = useState<BulletinErrors | null>(null);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<Bulletin>({
+    resolver: zodResolver(bulletinSchema)
+  });
 
   async function onSubmit(data: Bulletin) {
-    const result = await bulletinSchema.safeParseAsync(data);
-
-    if (result.success) {
-      // TODO: send data to server
-      setErrors(null);
-    } else {
-      setErrors(result.error.format());
-    }
+    // TODO: Submit the bulletin to the server
+    console.log({ data });
   }
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
       <TextInput
         placeholder="Title"
-        errors={errors?.title?._errors}
+        error={errors.title?.message}
         {...register("title")}
       />
 
       <TextInput
         placeholder="Content"
-        errors={errors?.content?._errors}
+        error={errors?.content?.message}
         {...register("content")}
       />
 
